@@ -143,5 +143,9 @@ with open('./tweet_input/tweets.txt') as data_file:
             for i in range(0, len(g.es)):
                 if tag_time[1] > g.es[i]['timestamp'] + timedelta(seconds=60):
                     g.delete_edges(g.es[i])
+
+            for i in g.vs['name']:
+                if g.degree(i) == 0:
+                    g.delete_vertices(i)
         except IndexError:
             pass
